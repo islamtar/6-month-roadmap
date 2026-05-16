@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خارطة طريق 6 أشهر — المحاسبة والمالية</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2e45;
+    --navy-light: #243b55;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f9f0d8;
+    --cream: #faf8f3;
+    --slate: #4a5568;
+    --text: #1a202c;
+    --text-muted: #718096;
+    --border: #e2d9c5;
+    --white: #ffffff;
+    --success: #276749;
+    --success-bg: #e6f4ed;
+    --warn: #744210;
+    --warn-bg: #fef3c7;
+    --info: #1a4e8a;
+    --info-bg: #ebf4ff;
+    --red: #9b1c1c;
+    --red-bg: #fde8e8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.8;
+    direction: rtl;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 60px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: 40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    max-width: 700px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    max-width: 620px;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+  .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+  .hero-stat { border-right: 2px solid var(--gold); padding-right: 16px; }
+  .hero-stat .num {
+    font-family: 'Cairo', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gold-light);
+    display: block;
+  }
+  .hero-stat .lbl { font-size: 11px; color: rgba(255,255,255,0.5); }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  .section { padding: 48px 0 32px; }
+  .section-header {
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 12px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .section-header h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    background: var(--gold-pale);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  /* STRATEGY CARDS */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .strategy-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+  }
+  .strategy-card .icon { font-size: 22px; margin-bottom: 10px; display: block; }
+  .strategy-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .strategy-card p { font-size: 13px; color: var(--slate); }
+
+  /* TABLES */
+  .tracks-table-wrap { overflow-x: auto; margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    background: var(--navy);
+    color: var(--gold-light);
+    padding: 11px 14px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: 'Cairo', sans-serif;
+  }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:nth-child(even) { background: rgba(249,240,216,0.3); }
+  tbody td { padding: 10px 14px; color: var(--slate); vertical-align: top; text-align: right; }
+  tbody td:first-child { color: var(--text); font-weight: 600; }
+
+  /* MONTH CARDS */
+  .month-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 36px;
+    overflow: hidden;
+  }
+  .month-header {
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .month-num {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cairo', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .month-meta h3 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .month-meta p { font-size: 12px; color: var(--text-muted); font-style: italic; }
+  .month-body { padding: 24px 28px; }
+
+  /* PILLS */
+  .focus-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .pill {
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .pill-blue { background: var(--info-bg); color: var(--info); border-color: #bee3f8; }
+  .pill-green { background: var(--success-bg); color: var(--success); border-color: #9ae6b4; }
+  .pill-gold { background: var(--gold-pale); color: var(--warn); border-color: #f6e05e; }
+  .pill-purple { background: #f3e8ff; color: #553c9a; border-color: #d6bcfa; }
+  .pill-red { background: var(--red-bg); color: var(--red); border-color: #feb2b2; }
+  .pill-navy { background: #ebf8ff; color: var(--navy); border-color: #bee3f8; }
+
+  /* TRACK TAGS */
+  .track-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+  .tag-acc { background: #ebf4ff; color: #1a4e8a; }
+  .tag-excel { background: #e6f4ed; color: #276749; }
+  .tag-odoo { background: #f3e8ff; color: #553c9a; }
+  .tag-english { background: var(--gold-pale); color: var(--warn); }
+  .tag-ifrs { background: #fde8e8; color: #9b1c1c; }
+  .tag-audit { background: #f0fff4; color: #22543d; }
+
+  /* MILESTONE */
+  .milestone-box {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+  .milestone-box h4 {
+    color: var(--gold);
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .milestone-box ul { list-style: none; }
+  .milestone-box ul li {
+    color: rgba(255,255,255,0.82);
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .milestone-box ul li::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* DAILY SCHEDULE */
+  .daily-schedule {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .time-block {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    background: var(--cream);
+  }
+  .time-block .time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    direction: ltr;
+    text-align: right;
+  }
+  .time-block .activity { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .time-block .detail { font-size: 12px; color: var(--text-muted); }
+
+  /* RESOURCES */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .resource-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    background: var(--white);
+  }
+  .resource-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .resource-card ul { list-style: none; }
+  .resource-card ul li {
+    font-size: 12px;
+    color: var(--slate);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(226,217,197,0.4);
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .resource-card ul li::before { content: '›'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+  /* TIPS */
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .tip-card {
+    border-right: 3px solid var(--gold);
+    background: var(--white);
+    padding: 16px 20px;
+    border-radius: 6px 0 0 6px;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .tip-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .tip-card p { font-size: 13px; color: var(--slate); line-height: 1.7; }
+
+  /* CHECKLIST */
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .checklist-cat {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .checklist-cat h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(226,217,197,0.5);
+    font-size: 12px;
+    color: var(--slate);
+  }
+  .check-box {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--gold);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* MISC */
+  .sub-heading {
+    font-family: 'Cairo', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 24px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .why-box {
+    background: var(--info-bg);
+    border-right: 3px solid var(--info);
+    padding: 14px 18px;
+    border-radius: 6px 0 0 6px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #1a4e8a;
+    line-height: 1.8;
+  }
+  .why-box strong { color: var(--navy); }
+  .footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px;
+    font-size: 13px;
+    margin-top: 48px;
+  }
+  .footer span { color: var(--gold); }
+  .week-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    text-transform: uppercase;
+    background: var(--gold-pale);
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    direction: ltr;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-badge">خارطة طريق مهنية · محاسبة ومالية · 2025</div>
+    <h1>خارطة طريق <span>6 أشهر</span> للتأهيل<br>الوظيفي في المحاسبة والمالية</h1>
+    <p>خطة دراسية متكاملة وشاملة عبر ستة مسارات احترافية — مصممة لتؤهلك للتوظيف كمحاسب، أو محاسب ERP، أو مساعد مراجع، أو محلل مالي مبتدئ.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">6</span><span class="lbl">أشهر</span></div>
+      <div class="hero-stat"><span class="num">24</span><span class="lbl">أسبوعاً</span></div>
+      <div class="hero-stat"><span class="num">6</span><span class="lbl">مسارات</span></div>
+      <div class="hero-stat"><span class="num">6-4</span><span class="lbl">ساعات يومياً</span></div>
+      <div class="hero-stat"><span class="num">4</span><span class="lbl">وظائف مستهدفة</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- قسم 00: نظرة عامة استراتيجية -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">00</div>
+    <h2>النظرة الاستراتيجية وفلسفة الدراسة</h2>
+  </div>
+
+  <div class="why-box">
+    <strong>لماذا هذا الترتيب؟</strong> المحاسبة الأساسية تأتي أولاً — لأنك لا تستطيع فهم الـ ERP أو الـ IFRS أو المراجعة دون أن تعرف القيود والدورة المحاسبية. الإكسيل يُدرَّس من اليوم الأول لأنه يُعزز كل مهارة أخرى. اللغة الإنجليزية مُدمجة طوال الرحلة. معايير IFRS والمراجعة تبدآن في الشهر الثالث والرابع بعد بناء الأساس المحاسبي. الشهر السادس مخصص بالكامل للمشاريع العملية والتوظيف.
+  </div>
+
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <span class="icon">🏗️</span>
+      <h3>بناء الأساس (الشهران 1–2)</h3>
+      <p>بناء القاعدة المحاسبية الصلبة. تعلّم كيف تتدفق المعاملات، وكيف ترتبط القوائم المالية، وكيف تُشغّل Odoo على المستوى الأساسي.</p>
+    </div>
+    <div class="strategy-card">
+      <span class="icon">⚙️</span>
+      <h3>بناء المهارات الأساسية (الشهران 3–4)</h3>
+      <p>محاسبة متوسطة، مقدمة IFRS، إكسيل متقدم، دورة Odoo الكاملة، وأساسيات المراجعة. المهارات تبدأ بالتكامل.</p>
+    </div>
+    <div class="strategy-card">
+      <span class="icon">🚀</span>
+      <h3>التقدم والتكامل (الشهران 5–6)</h3>
+      <p>IFRS متقدم، عملية مراجعة كاملة، تحليل مالي، وإعداد Odoo المعقد. الشهر السادس للمحفظة المهنية والتوظيف.</p>
+    </div>
+    <div class="strategy-card">
+      <span class="icon">🛡️</span>
+      <h3>تصميم مضاد للإرهاق</h3>
+      <p>المسارات تتناوب يومياً حتى لا تقضي 6 ساعات في موضوع واحد. يوم الأحد للمراجعة والراحة. المشاريع العملية تستبدل النظرية الجافة في الأسبوعين 3 و4 من كل شهر.</p>
+    </div>
+    <div class="strategy-card">
+      <span class="icon">📊</span>
+      <h3>توزيع وقت الدراسة اليومي</h3>
+      <p>5 ساعات يومياً: 2 ساعة مسار رئيسي + 1.5 ساعة مسار ثانوي + 1 ساعة إنجليزي + 30 دقيقة مراجعة. الجمعة للمشاريع وأيام العطل للمراجعة.</p>
+    </div>
+    <div class="strategy-card">
+      <span class="icon">🎯</span>
+      <h3>عقلية التوظيف أولاً</h3>
+      <p>كل موضوع يُفلتر عبر سؤال: "هل سيختبرني صاحب العمل على هذا؟" النظرية المجردة محدودة. المهارات العملية وإتقان البرامج والتواصل هي الأولوية.</p>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">المسارات الستة على نظرة واحدة</h3>
+  <div class="tracks-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>المسار</th>
+          <th>لماذا هو مهم</th>
+          <th>المستوى الابتدائي</th>
+          <th>شهر البداية</th>
+          <th>الأولوية</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="track-tag tag-acc">محاسبة</span> المحاسبة الأساسية</td>
+          <td>العمود الفقري لكل المسارات الأخرى. بدونها لا شيء يُفهم.</td>
+          <td>مبتدئ تماماً — لا يشترط خبرة</td>
+          <td>الشهر 1 — الأسبوع 1</td>
+          <td>🔴 حرجة</td>
+        </tr>
+        <tr>
+          <td><span class="track-tag tag-excel">إكسيل</span> الإكسيل المتقدم</td>
+          <td>يُستخدم في كل وظيفة مالية يومياً. أصحاب العمل يختبرونه في المقابلات.</td>
+          <td>معرفة بسيطة بجداول البيانات</td>
+          <td>الشهر 1 — الأسبوع 1</td>
+          <td>🔴 حرجة</td>
+        </tr>
+        <tr>
+          <td><span class="track-tag tag-english">إنجليزي</span> إنجليزي الأعمال</td>
+          <td>90% من مواد IFRS والمراجعة بالإنجليزية. ضروري للشركات الدولية.</td>
+          <td>مستوى إنجليزي متوسط</td>
+          <td>الشهر 1 — الأسبوع 1</td>
+          <td>🟠 عالية</td>
+        </tr>
+        <tr>
+          <td><span class="track-tag tag-odoo">أودو</span> نظام Odoo ERP</td>
+          <td>أكثر نظام ERP مفتوح المصدر انتشاراً. طلب كبير على المحاسبين المتقنين له.</td>
+          <td>لا يشترط خبرة سابقة بأنظمة ERP</td>
+          <td>الشهر 1 — الأسبوع 2</td>
+          <td>🟠 عالية</td>
+        </tr>
+        <tr>
+          <td><span class="track-tag tag-ifrs">IFRS</span> دبلوم IFRS</td>
+          <td>المعيار المحاسبي العالمي. إلزامي لأي دور محاسبي متوسط أو أعلى.</td>
+          <td>يشترط أساساً محاسبياً أولاً</td>
+          <td>الشهر 3 — الأسبوع 9</td>
+          <td>🟡 متوسطة-عالية</td>
+        </tr>
+        <tr>
+          <td><span class="track-tag tag-audit">مراجعة</span> المراجعة والتدقيق</td>
+          <td>يفتح أبواب الشركات الكبرى ومكاتب المراجعة والتدقيق الداخلي.</td>
+          <td>يشترط محاسبة + أساسيات IFRS أولاً</td>
+          <td>الشهر 4 — الأسبوع 13</td>
+          <td>🟡 متوسطة-عالية</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-heading">هيكل الدراسة اليومي (كل يوم دراسة)</h3>
+  <div class="daily-schedule">
+    <div class="time-block">
+      <span class="time">08:00 – 10:00</span>
+      <div class="activity">المسار الرئيسي (ساعتان)</div>
+      <div class="detail">تركيز عميق على الموضوع الرئيسي للأسبوع (محاسبة أو IFRS أو مراجعة). بدون مشتتات.</div>
+    </div>
+    <div class="time-block">
+      <span class="time">10:15 – 11:45</span>
+      <div class="activity">المسار الثانوي (1.5 ساعة)</div>
+      <div class="detail">تدريب إكسيل OR تمارين Odoo العملية. دائماً تطبيق، ليس مجرد قراءة.</div>
+    </div>
+    <div class="time-block">
+      <span class="time">12:00 – 13:00</span>
+      <div class="activity">إنجليزي الأعمال (ساعة)</div>
+      <div class="detail">اقرأ مقالة مالية واحدة، مارس المفردات، أو اكتب فقرة محاسبية قصيرة.</div>
+    </div>
+    <div class="time-block">
+      <span class="time">15:00 – 15:30</span>
+      <div class="activity">المراجعة المتباعدة (30 دقيقة)</div>
+      <div class="detail">راجع ملاحظات الأمس باستخدام بطاقات Anki. لا تتخطاها أبداً — تراكمها يصنع الفارق.</div>
+    </div>
+    <div class="time-block">
+      <span class="time">الجمعة</span>
+      <div class="activity">يوم المشروع والتطبيق</div>
+      <div class="detail">اعمل على المشروع العملي للشهر. طبّق نظرية الأسبوع كله في تمرين واحد شامل.</div>
+    </div>
+    <div class="time-block">
+      <span class="time">السبت</span>
+      <div class="activity">مراجعة أسبوعية + راحة</div>
+      <div class="detail">ما الذي أتقنته؟ ما الثغرات؟ ما الذي يحتاج إعادة؟ خطط للأسبوع القادم ثم استرح.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ -->
+<!-- الشهر الأول -->
+<!-- ══════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <h2>الشهر الأول — الأساسيات والإطار العام</h2>
+  </div>
+  <div class="month-card">
+    <div class="month-header">
+      <div class="month-num" style="background:#1a4e8a;">1</div>
+      <div class="month-meta">
+        <h3>بناء الأساس المحاسبي</h3>
+        <p>الشعار: "لا يمكنك الجري قبل أن تتعلم المشي. أتقن لغة الأعمال أولاً."</p>
+      </div>
+    </div>
+    <div class="month-body">
+      <div class="focus-pills">
+        <span class="pill pill-blue">مبادئ المحاسبة الأساسية</span>
+        <span class="pill pill-green">أساسيات الإكسيل</span>
+        <span class="pill pill-gold">إنجليزي الأعمال المبتدئ</span>
+        <span class="pill pill-purple">إعداد Odoo والتنقل</span>
+      </div>
+      <div class="tracks-table-wrap">
+        <table>
+          <thead>
+            <tr><th>الأسبوع</th><th>مسار المحاسبة</th><th>مسار الإكسيل</th><th>مسار Odoo</th><th>مسار الإنجليزي</th><th>المشروع / التمرين</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="week-label">Week 1</span></td>
+              <td><span class="track-tag tag-acc">محاسبة</span>المعادلة المحاسبية، قواعد المدين والدائن، أنواع الحسابات (ALOE)، دليل الحسابات، القيود اليومية — المعاملات البسيطة</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>واجهة الإكسيل، مراجع الخلايا، الصيغ الأساسية (SUM، AVERAGE، IF)، التنسيق، الفرز والتصفية</td>
+              <td><span class="track-tag tag-odoo">أودو</span>تثبيت Odoo Community / نسخة أونلاين، التنقل في القوائم، إعداد الشركة، استكشاف دليل الحسابات</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>50 مصطلحاً محاسبياً أساسياً، قراءة أخبار مالية بسيطة (BBC Business)، كتابة بريد إلكتروني بسيط</td>
+              <td>سجّل 20 قيداً يومياً نموذجياً باليد، ثم انقلها إلى نموذج دفتر يومية أعددته بنفسك في الإكسيل</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 2</span></td>
+              <td><span class="track-tag tag-acc">محاسبة</span>حسابات T، ميزان المراجعة، ترحيل دفتر الأستاذ، القيود التسوية (المستحقات، المدفوعات المقدمة، الاستهلاك)، قيود الإقفال</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>VLOOKUP وHLOOK وIFERROR، النطاقات المسماة، المراجع المطلقة والنسبية، التحقق من صحة البيانات الأساسي</td>
+              <td><span class="track-tag tag-odoo">أودو</span>إنشاء موردين وعملاء، تسجيل فاتورة مورد، تسجيل فاتورة عميل، ترحيل قيود يدوياً</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>مفردات القوائم المالية، تدرّب على قراءة ملخص تقرير سنوي لشركة ما</td>
+              <td>أكمل تمرين الدورة المحاسبية الكاملة: قيود ← ترحيل ← ميزان مراجعة لمشروع صغير افتراضي</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 3</span></td>
+              <td><span class="track-tag tag-acc">محاسبة</span>القوائم المالية: قائمة الدخل، الميزانية العمومية (الهيكل والروابط)، قائمة التدفقات النقدية (الطريقة المباشرة والغير مباشرة)</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>الجداول المحورية (إنشاء، تقطيع، تصفية)، المخططات المحورية، التنسيق الشرطي، تصميم لوحة بيانات بسيطة</td>
+              <td><span class="track-tag tag-odoo">أودو</span>إعداد دليل حسابات كامل في Odoo، تكوين معدلات الضرائب، إدخال أرصدة افتتاحية، تشغيل تقرير ميزان المراجعة</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>قراءة وتفسير الميزانية العمومية، مفردات قائمة الدخل، هيكل فقرة التقرير الرسمي</td>
+              <td>ابنِ نموذج مالي متكامل من 3 قوائم في الإكسيل لشركة افتراضية (ربط القوائم ببعضها)</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 4</span></td>
+              <td><span class="track-tag tag-acc">محاسبة</span>مطابقة الحسابات البنكية، الصندوق، إدارة حسابات القبض والدفع، دورة الذمم الدائنة، قائمة إقفال الشهر</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>المخططات الديناميكية، السباركلاين، SUMIF/COUNTIF/AVERAGEIF، دوال النصوص، مقدمة بسيطة للماكرو</td>
+              <td><span class="track-tag tag-odoo">أودو</span>معالجة دورة الذمم الدائنة الكاملة (أمر شراء ← فاتورة ← دفع) ودورة الذمم المدينة (عرض سعر ← فاتورة ← استلام) في Odoo</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>كتابة بريد إلكتروني احترافي (طلب سداد، استفسار، متابعة)، النبرة المهنية والتنسيق</td>
+              <td>أجرِ مطابقة بنكية في الإكسيل باستخدام كشف حساب بنكي نموذجي. كرّر دورة الذمم بالكامل في Odoo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="milestone-box">
+        <h4>🏁 معلم الشهر الأول — أنت مستعد للتقدم عندما:</h4>
+        <ul>
+          <li>تستطيع كتابة قيود يومية لأي معاملة أساسية دون تردد</li>
+          <li>تستطيع إعداد ميزان مراجعة وربطه بالميزانية وقائمة الدخل في الإكسيل</li>
+          <li>لديك Odoo يعمل بدليل حسابات كامل ودورة ذمم مدينة ودائنة مسجلة</li>
+          <li>تعرف 100+ مصطلح محاسبي/تجاري إنجليزي وتقرأ المقالات المالية بسهولة</li>
+          <li>بنيت نموذجاً مالياً متكاملاً من 3 قوائم في الإكسيل (حتى البسيط منه)</li>
+          <li>تُجري مطابقة بنكية بارتياح وتفهم البنود المعلقة</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- الشهر الثاني -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <h2>الشهر الثاني — المحاسبة التشغيلية والإكسيل المتوسط</h2>
+  </div>
+  <div class="month-card">
+    <div class="month-header">
+      <div class="month-num" style="background:#276749;">2</div>
+      <div class="month-meta">
+        <h3>الذمم، المخزون، الرواتب والدورات التجارية</h3>
+        <p>الشعار: "تعلّم كيف تعمل الشركات الحقيقية يوماً بيوم، وأتمتها كلها في Odoo."</p>
+      </div>
+    </div>
+    <div class="month-body">
+      <div class="focus-pills">
+        <span class="pill pill-blue">دورات المحاسبة التشغيلية</span>
+        <span class="pill pill-green">إكسيل متوسط</span>
+        <span class="pill pill-purple">دورة Odoo التجارية الكاملة</span>
+        <span class="pill pill-gold">إنجليزي الأعمال — التقارير</span>
+      </div>
+      <div class="tracks-table-wrap">
+        <table>
+          <thead>
+            <tr><th>الأسبوع</th><th>مسار المحاسبة</th><th>مسار الإكسيل</th><th>مسار Odoo</th><th>مسار الإنجليزي</th><th>المشروع / التمرين</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="week-label">Week 5</span></td>
+              <td><span class="track-tag tag-acc">محاسبة</span>الذمم المدينة: جداول الأعمار، مخصص الديون المشكوك فيها، شطب الديون المعدومة، تحويل المستحقات</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>INDEX/MATCH (بديل VLOOKUP)، المصفوفات الديناميكية (FILTER, SORT, UNIQUE)، مقدمة XLOOKUP</td>
+              <td><span class="track-tag tag-odoo">أودو</span>وحدة الفوترة: شروط الدفع، حدود الائتمان، رسائل المتابعة، كشوف العملاء، تقارير الأعمار</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>كتابة بريد تحصيل احترافي، فهم شروط الائتمان (Net 30، 2/10 Net 30)</td>
+              <td>ابنِ جدول أعمار الذمم المدينة في الإكسيل بصيغ ديناميكية. أعدّ متابعة الفواتير المتأخرة تلقائياً في Odoo</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 6</span></td>
+              <td><span class="track-tag tag-acc">محاسبة</span>الذمم الدائنة: المطابقة الثلاثية، خصومات الدفع المبكر، تسوية حسابات الموردين، الالتزامات المستحقة</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>جداول محورية متقدمة (حقول محسوبة، مقسّمات، جداول زمنية)، Power Query أساسي (استيراد، تحويل، تحميل)</td>
+              <td><span class="track-tag tag-odoo">أودو</span>وحدة المشتريات: أوامر الشراء، فواتير الموردين، المطابقة الثلاثية، دفعات الموردين</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>تواصل الموردين، مصطلحات أوامر الشراء، كتابة بريد تأكيد الدفع</td>
+              <td>محاكاة دورة الذمم الدائنة لشهر كامل (10 فواتير موردين) في Odoo. إنتاج تقرير أعمار الموردين. تسوية كشف حساب مورد في الإكسيل</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 7</span></td>
+              <td><span class="track-tag tag-acc">محاسبة</span>محاسبة المخزون: FIFO، LIFO، المتوسط المرجح، الأنظمة الدائمة والدورية، تقييم المخزون، حساب تكلفة البضاعة المباعة</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>الدوال المالية: NPV وIRR وPMT وFV وPV — حالات استخدام عملية؛ تحليل ماذا لو (Goal Seek)</td>
+              <td><span class="track-tag tag-odoo">أودو</span>وحدة المخزون: المنتجات، المستودعات، حركات المخزون، طرق التقييم، التسويات، التكاليف المُحملة</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>مصطلحات المخزون وسلسلة التوريد، قراءة ملاحظات المخزون في التقارير السنوية</td>
+              <td>احسب قيمة المخزون بـ FIFO والمتوسط المرجح لـ 20 صنفاً في الإكسيل. أعدّ مخزون Odoo بتكلفة FIFO وقارن التقارير</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 8</span></td>
+              <td><span class="track-tag tag-acc">محاسبة</span>محاسبة الرواتب: الراتب الإجمالي، الخصومات، صافي الراتب، اشتراكات صاحب العمل، قيود الرواتب، الرواتب المستحقة، مخصصات الإجازات</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>لوحات بيانات الإكسيل: بطاقات KPI، مخططات ديناميكية مرتبطة بجداول محورية، مقسّمات، جداول زمنية</td>
+              <td><span class="track-tag tag-odoo">أودو</span>وحدة الرواتب: عقود الموظفين، كشوف الراتب، قواعد الراتب، دفتر اليومية، التقارير</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>مصطلحات الرواتب والموارد البشرية، فهم عقود التوظيف، مقدمة الكتابة الرسمية</td>
+              <td>ابنِ حاسبة رواتب في الإكسيل (إجمالي ← خصومات ← صافي) لـ 10 موظفين. اعالج دورة رواتب في Odoo وسجّل القيد</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="milestone-box">
+        <h4>🏁 معلم الشهر الثاني — أنت مستعد للتقدم عندما:</h4>
+        <ul>
+          <li>تستطيع إدارة دورتي الذمم المدينة والدائنة بالكامل في الإكسيل وOdoo</li>
+          <li>تفهم الفرق بين FIFO والمتوسط المرجح وتحسب تكلفة البضاعة لكل منهما</li>
+          <li>تحسب صافي راتب الموظفين وتسجّل القيد المحاسبي الصحيح</li>
+          <li>بنيت لوحة بيانات تفاعلية في الإكسيل بجداول محورية ومقسّمات وبطاقات KPI</li>
+          <li>تتقن INDEX/MATCH وPower Query الأساسي والدوال المالية (NPV، IRR، PMT)</li>
+          <li>إنجليزي أعمالك احترافي — رسائل وتقارير ومذكرات تحليل</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- الشهر الثالث -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <h2>الشهر الثالث — مقدمة IFRS ونمذجة الإكسيل المتقدمة</h2>
+  </div>
+  <div class="month-card">
+    <div class="month-header">
+      <div class="month-num" style="background:#744210;">3</div>
+      <div class="month-meta">
+        <h3>معايير IFRS، الأصول الثابتة، عقود الإيجار والنمذجة المالية</h3>
+        <p>الشعار: "تحدّث اللغة المحاسبية العالمية وابنِ نماذج مالية تحكي قصصاً."</p>
+      </div>
+    </div>
+    <div class="month-body">
+      <div class="focus-pills">
+        <span class="pill pill-red">IFRS مبتدئ (IAS 1, 2, 7, 16)</span>
+        <span class="pill pill-green">نمذجة إكسيل متقدمة</span>
+        <span class="pill pill-purple">أصول ثابتة Odoo + تقارير متقدمة</span>
+        <span class="pill pill-gold">إنجليزي — لغة التقارير المالية</span>
+      </div>
+      <div class="tracks-table-wrap">
+        <table>
+          <thead>
+            <tr><th>الأسبوع</th><th>مسار المحاسبة / IFRS</th><th>مسار الإكسيل</th><th>مسار Odoo</th><th>مسار الإنجليزي</th><th>المشروع / التمرين</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="week-label">Week 9</span></td>
+              <td><span class="track-tag tag-ifrs">IFRS</span>IAS 16 — العقارات والمصانع والمعدات: نموذج التكلفة مقابل نموذج إعادة التقييم، طرق الاستهلاك (QSD، المتناقص، وحدات الإنتاج)، التخلص من الأصول</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>أفضل ممارسات النمذجة المالية (ترميز الألوان، الهيكل، ورقة الافتراضات)، نموذج جدول الاستهلاك، جداول الحساسية (Data Tables ثنائي/أحادي)</td>
+              <td><span class="track-tag tag-odoo">أودو</span>وحدة الأصول الثابتة: إنشاء فئات الأصول، حساب الاستهلاك، ترحيل قيود الاستهلاك، قيود التخلص</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>لغة إفصاحات IAS 16، قراءة ملاحظات الأصول الثابتة في التقارير السنوية، استخدام المجهول في الكتابة المالية</td>
+              <td>ابنِ سجل أصول ثابت كامل في الإكسيل: التكلفة، جدول الاستهلاك (الطرق الثلاث)، القيمة الدفترية الصافية، ربح/خسارة التخلص. كرّره في وحدة الأصول Odoo</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 10</span></td>
+              <td><span class="track-tag tag-ifrs">IFRS</span>IAS 2 — المخزون: اختبار صافي القيمة القابلة للتحقق، FIFO تحت IFRS (LIFO محظور)، الشطب والعكس. IAS 7 — قائمة التدفقات النقدية: الطريقة المباشرة والغير مباشرة</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>نموذج مالي متكامل من 3 قوائم مع قائمة تدفقات نقدية كاملة (الطريقة الغير مباشرة)، اختبار توازن الميزانية</td>
+              <td><span class="track-tag tag-odoo">أودو</span>تقارير التدفقات النقدية، وحدة مطابقة البنك، تكوين العملات المتعددة، تشغيل قائمة التدفقات النقدية</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>مصطلحات قائمة التدفقات النقدية، شرح الفرق بين النقد والربح لغير المحاسبين كتابةً</td>
+              <td>أكمل النموذج المالي المتكامل: الدخل يُغذّي الأرباح المحتجزة، الميزانية تُغذّي التدفقات. اختبار: الميزانية يجب أن تتوازن</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 11</span></td>
+              <td><span class="track-tag tag-ifrs">IFRS</span>IFRS 15 — الإيراد من العقود مع العملاء: النموذج المكوّن من 5 خطوات (تحديد العقد ← التزامات الأداء ← سعر المعاملة ← التخصيص ← الاعتراف)، الاعتبار المتغير</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>تحليل السيناريوهات (متفائل/أساسي/متشائم)، أداة Scenario Manager، دوال CHOOSE/OFFSET، نمذجة الإيرادات الديناميكية</td>
+              <td><span class="track-tag tag-odoo">أودو</span>وحدة المبيعات: عقود متعددة العناصر، تكوين الإيرادات المؤجلة، الفوترة على المراحل، تقارير الاعتراف بالإيراد</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>كتابة إفصاحات IFRS 15، ملاحظة الإيراد في التقرير السنوي، شرح التزامات الأداء بوضوح</td>
+              <td>ابنِ جدول الاعتراف بالإيراد في الإكسيل لعقد برمجيات 3 سنوات (اشتراك + تطبيق) وفق نموذج IFRS 15 الخطوات الخمس</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 12</span></td>
+              <td><span class="track-tag tag-ifrs">IFRS</span>IFRS 16 — عقود الإيجار: محاسبة المستأجر (أصل حق الاستخدام، التزام الإيجار، الفائدة الفعلية)، الإعفاءات القصيرة والمنخفضة. IAS 37 — المخصصات والالتزامات المحتملة</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>جدول إطفاء عقد الإيجار وفق IFRS 16 في الإكسيل (ديناميكي: مدخلات متغيرة ← جدول تلقائي)، القيمة الحالية، حساب الفوائد</td>
+              <td><span class="track-tag tag-odoo">أودو</span>إدارة عقود الإيجار في Odoo، قيود IFRS 16 اليدوية، تسجيل المخصصات، التقارير المالية</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>ملاحظات IFRS 16 في الممارسة العملية، مفردات الإيجار (مستأجر، مؤجر، أصل حق الاستخدام، معدل الاقتراض التدريجي)</td>
+              <td>ابنِ حاسبة IFRS 16 كاملة في الإكسيل لعقد إيجار 5 سنوات: القيمة الحالية للالتزام، جدول الأصل، الأثر على قائمة الدخل شهرياً، القيود للسنة الأولى</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="milestone-box">
+        <h4>🏁 معلم الشهر الثالث — أنت مستعد للتقدم عندما:</h4>
+        <ul>
+          <li>تطبّق IAS 16 وIAS 2 وIAS 7 وIFRS 15 وIFRS 16 على سيناريوهات عملية</li>
+          <li>لديك نموذج مالي متكامل (دخل ← ميزانية ← تدفقات) يتوازن في الإكسيل</li>
+          <li>تبني جدول إطفاء عقد إيجار IFRS 16 من الصفر في الإكسيل</li>
+          <li>عالجت دورات الاستهلاك والاعتراف بالإيراد والمخصصات في Odoo</li>
+          <li>تقرأ وتفسّر ملاحظات إفصاح IFRS في التقارير السنوية</li>
+          <li>تفهم تحليل السيناريوهات وتقدّم التوقعات المالية باحترافية</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- الشهر الرابع -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <h2>الشهر الرابع — IFRS المتقدم وأساسيات المراجعة</h2>
+  </div>
+  <div class="month-card">
+    <div class="month-header">
+      <div class="month-num" style="background:#553c9a;">4</div>
+      <div class="month-meta">
+        <h3>IFRS التوحيد، الأدوات المالية ومدخل المراجعة</h3>
+        <p>الشعار: "افهم كيف تُعدّ مجموعات الشركات تقاريرها، وكيف يتحقق المراجعون منها."</p>
+      </div>
+    </div>
+    <div class="month-body">
+      <div class="focus-pills">
+        <span class="pill pill-red">IFRS متقدم (IFRS 3, 9, 10)</span>
+        <span class="pill pill-navy">أساسيات المراجعة</span>
+        <span class="pill pill-purple">تقارير Odoo المتقدمة</span>
+        <span class="pill pill-green">إكسيل — أدوات المراجعة</span>
+      </div>
+      <div class="tracks-table-wrap">
+        <table>
+          <thead>
+            <tr><th>الأسبوع</th><th>مسار IFRS</th><th>مسار المراجعة</th><th>إكسيل / Odoo</th><th>مسار الإنجليزي</th><th>المشروع / التمرين</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="week-label">Week 13</span></td>
+              <td><span class="track-tag tag-ifrs">IFRS</span>IAS 1 — عرض القوائم المالية: الهيكل، البنود الدنيا، الدخل الشامل الآخر (OCI)، إعادة العرض. IAS 12 — الضريبة المؤجلة: الفروق المؤقتة، DTA مقابل DTL</td>
+              <td><span class="track-tag tag-audit">مراجعة</span>مقدمة في المراجعة: الهدف، الأنواع (خارجية/داخلية/حكومية)، إطار معايير ISA، الشك المهني، الاستقلالية</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>ورقة عمل المراجعة في الإكسيل: علامات المراجعة، الإسناد المتبادل، جداول القيادة، التنسيق الجاهز للمراجعة. Odoo: تصدير القوائم للمراجعة</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>مفردات المراجعة، لغة ISA 200، كتابة فقرة من خطاب الإدارة احترافياً</td>
+              <td>أعدّ مجموعة قوائم مالية جاهزة للمراجعة في الإكسيل للشركة الافتراضية من الشهر الثالث، مع إفصاحات وملاحظات</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 14</span></td>
+              <td><span class="track-tag tag-ifrs">IFRS</span>IFRS 9 — الأدوات المالية: التصنيف (FVTPL، FVOCI، التكلفة المطفأة)، الانخفاض في القيمة (نموذج ECL)، التحوط الأساسي. IAS 32 — عرض الأدوات المالية</td>
+              <td><span class="track-tag tag-audit">مراجعة</span>نموذج مخاطر المراجعة: المخاطر الكامنة، مخاطر الرقابة، مخاطر الاكتشاف. الأهمية النسبية: التخطيط، الأداء، الحد الأدنى. إجراءات تقييم المخاطر (ISA 315)</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>جدول السعر الفعلي (EIR) لسند في الإكسيل. Odoo: تسجيل معاملات الاستثمار، دفتر الأستاذ للشريك</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>لغة مخاطر المراجعة: "significant risk"، "risk of material misstatement"، "inherent limitations" في جمل صحيحة</td>
+              <td>ابنِ حاسبة مخصص ECL (الخسارة الائتمانية المتوقعة) في الإكسيل بنموذج مبسط من 3 مراحل لمحفظة ذمم مدينة افتراضية</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 15</span></td>
+              <td><span class="track-tag tag-ifrs">IFRS</span>IFRS 10 — القوائم المالية الموحدة: تعريف السيطرة، إجراءات التوحيد (إلغاء المعاملات البينية، الشهرة، حقوق الأقلية). IFRS 3 — اندماجات الأعمال: طريقة الاستحواذ، حساب الشهرة</td>
+              <td><span class="track-tag tag-audit">مراجعة</span>أدلة المراجعة: الأنواع (التحليل، الاستفسار، الفحص، الملاحظة، إعادة الحساب، إعادة التنفيذ)، الكفاية والملاءمة، ISA 500. معايير التوثيق</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>ورقة عمل التوحيد: ميزان مراجعة الأم + الشركة التابعة، قيود الإلغاء (الذمم البينية، الإيرادات البينية)، ميزان المراجعة الموحد</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>لغة ملاحظات التوحيد، قراءة القوائم المالية للمجموعات، شرح الشهرة الزائدة بلغة بسيطة</td>
+              <td>أعدّ ورقة عمل توحيد لشركة أم بشركة تابعة مملوكة 80%: إلغاء المعاملات البينية، حساب الشهرة وحقوق الأقلية، إنتاج القوائم الموحدة</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 16</span></td>
+              <td><span class="track-tag tag-ifrs">IFRS</span>IAS 36 — انخفاض قيمة الأصول: وحدة توليد النقد (CGU)، المبلغ القابل للاسترداد (القيمة الاستخدامية مقابل القيمة العادلة)، خسارة الانخفاض وعكسها. IAS 38 — الأصول غير الملموسة</td>
+              <td><span class="track-tag tag-audit">مراجعة</span>أخذ العينات (ISA 530): إحصائية وغير إحصائية، حجم العينة، الخطأ المسموح به. مراجعة مجالات بعينها: النقد، الذمم المدينة، الإيراد، الرواتب (نظرة عامة)</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>نموذج اختبار الانخفاض في الإكسيل: بناء DCF لحساب القيمة الاستخدامية. Odoo: تقرير الميزانية مقابل الفعلي، تكوين الحسابات التحليلية</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>كتابة مذكرة نتيجة مراجعة، تقديم استنتاج الانخفاض في القيمة، لغة "التشديد على مسألة ما"</td>
+              <td>قم بمراجعة وهمية لمجال مالي واحد (الإيراد) للشركة الافتراضية: صمّم الإجراءات، وثّق العمل، استنتج مدى العدالة</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="milestone-box">
+        <h4>🏁 معلم الشهر الرابع — أنت مستعد للتقدم عندما:</h4>
+        <ul>
+          <li>تعدّ ورقة توحيد بسيطة (شركة أم + شركة تابعة) مع الشهرة وحقوق الأقلية</li>
+          <li>تفهم نموذج ECL لـ IFRS 9 وتبني جدول مخصص أساسي</li>
+          <li>تشرح نموذج مخاطر المراجعة وتحدد مستويات الأهمية النسبية لشركة صغيرة</li>
+          <li>تصمّم إجراءات مراجعة لـ 3 مجالات على الأقل في القوائم المالية</li>
+          <li>لديك نموذج اختبار انخفاض في الإكسيل باستخدام DCF / القيمة الاستخدامية</li>
+          <li>تكتب توثيق المراجعة الاحترافي وفقرات خطاب الإدارة</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- الشهر الخامس -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <h2>الشهر الخامس — التحليل المالي والمراجعة المتقدمة وإتقان Odoo</h2>
+  </div>
+  <div class="month-card">
+    <div class="month-header">
+      <div class="month-num" style="background:#9b1c1c;">5</div>
+      <div class="month-meta">
+        <h3>التحليل المالي، تحليل النسب، إكمال المراجعة وتقارير Odoo الإدارية</h3>
+        <p>الشعار: "اربط كل القطع معاً — حلّل، وأعدّ التقارير، وانقل المعلومات المالية بذكاء."</p>
+      </div>
+    </div>
+    <div class="month-body">
+      <div class="focus-pills">
+        <span class="pill pill-navy">إجراءات المراجعة المتقدمة</span>
+        <span class="pill pill-blue">التحليل المالي والنسب</span>
+        <span class="pill pill-purple">تقارير Odoo الإدارية</span>
+        <span class="pill pill-green">إكسيل — أدوات التحليل الديناميكية</span>
+      </div>
+      <div class="tracks-table-wrap">
+        <table>
+          <thead>
+            <tr><th>الأسبوع</th><th>مسار التحليل المالي</th><th>مسار المراجعة</th><th>إكسيل / Odoo</th><th>مسار الإنجليزي</th><th>المشروع / التمرين</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="week-label">Week 17</span></td>
+              <td><span class="track-tag tag-acc">تحليل</span>تحليل النسب: السيولة (جارية، سريعة، نقدية)، الربحية (هامش إجمالي، ROE، ROA، ROCE)، الملاءة (D/E، تغطية الفائدة)، الكفاءة (دوران الأصول، DSO، DPO)</td>
+              <td><span class="track-tag tag-audit">مراجعة</span>الإجراءات التحليلية (ISA 520): مقارنة النسب، تحليل الاتجاهات، اختبار المعقولية. تقييم الاستمرارية (ISA 570): المؤشرات، استجابة الإدارة، آثار المراجعة</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>ابنِ لوحة تحليل نسب تلقائية: أدخل القوائم، احسب 20 نسبة تلقائياً، تنسيق شرطي بالإشارات الضوئية، مقارنة بالمعايير القطاعية</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>كتابة مذكرة تحليل مالي، تقديم تعليق على النسب ("تراجعت نسبة التداول من 2.1 إلى 1.3 مما يشير إلى...")، كتابة ملخص تنفيذي</td>
+              <td>نزّل التقرير السنوي لشركة عامة حقيقية. احسب جميع النسب الرئيسية لـ 3 سنوات. اكتب مذكرة تحليل مالي صفحة واحدة. قارن النسب بشركة منافسة.</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 18</span></td>
+              <td><span class="track-tag tag-acc">تحليل</span>تحليل التدفقات النقدية: التدفق النقدي الحر، دورة تحويل النقد (CCC)، تحليل النفقات الرأسمالية، إدارة رأس المال العامل، تحليل DuPont للعائد على حقوق الملكية</td>
+              <td><span class="track-tag tag-audit">مراجعة</span>مراجعة المجالات عالية الخطورة: اختبار الاعتراف بالإيراد (مخاطر الغش ISA 240)، معاملات الأطراف ذات الصلة (ISA 550)، التقديرات والأحكام (ISA 540 المُعدَّل)</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>نموذج دورة تحويل النقد، مخطط جسر التدفق النقدي الحر، نموذج DuPont. Odoo: تكوين المحاسبة التحليلية، تقارير مراكز التكلفة، وحدة الميزانية</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>كتابة مذكرة تخطيط المراجعة، تحديد المخاطر الجوهرية كتابةً، التواصل الاحترافي مع الإدارة</td>
+              <td>أجرِ مراجعة وهمية لإيراد الشركة الافتراضية: وثّق التخطيط، نفّذ الإجراءات، سجّل النتائج، أعدّ ملاحظة لخطاب الإدارة</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 19</span></td>
+              <td><span class="track-tag tag-acc">تحليل</span>التخطيط المالي والميزانية: الميزانية الصفرية مقابل التدريجية، النماذج القائمة على المحركات، التوقعات المتجددة، تحليل الانحرافات (حجم، سعر، مزيج)، التقارير الفعلية مقابل الميزانية</td>
+              <td><span class="track-tag tag-audit">مراجعة</span>إنهاء المراجعة: الأحداث اللاحقة (ISA 560)، التمثيلات الكتابية (ISA 580)، تقييم الأخطاء (ISA 450)، تكوين رأي المراجع، أنواع آراء المراجعة (غير معدّل، متحفظ، معاكس، امتناع)</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>ابنِ نموذج ميزانية متجددة 12 شهراً مع لوحة تحليل انحرافات. Odoo: تكوين الميزانيات، تشغيل تقرير الميزانية مقابل الفعلي، إنتاج الحسابات الإدارية</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>كتابة تقرير المراجع المستقل (تنسيق الرأي غير المعدّل القياسي)، لغة الرأي المتحفظ، فقرة الأمور الرئيسية للمراجعة</td>
+              <td>ابنِ نموذج ميزانية 12 شهراً كاملاً + توقعات في الإكسيل مع: ورقة افتراضات، توقعات الدخل والميزانية والتدفقات النقدية، ولوحة تحليل الانحرافات</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 20</span></td>
+              <td><span class="track-tag tag-acc">تحليل</span>محاسبة الإدارة: هامش المساهمة، تحليل نقطة التعادل، CVP، قرارات الصنع أو الشراء، التكاليف الملائمة، ربحية المنتج/العميل. مقدمة في KPIs ولوحة الأداء المتوازن</td>
+              <td><span class="track-tag tag-audit">مراجعة</span>المراجعة الداخلية مقابل الخارجية، إطار الرقابة الداخلية (COSO)، اختبار الضوابط، كتابة تقرير المراجعة الداخلية، التوصيات وخطط الإجراءات</td>
+              <td><span class="track-tag tag-excel">إكسيل</span>نموذج CVP (التكلفة-الحجم-الربح) مع مخططات تفاعلية، مخطط نقطة التعادل، مخطط شلال هامش المساهمة. Odoo: تقارير متقدمة، تصدير للإكسيل للتحليل</td>
+              <td><span class="track-tag tag-english">إنجليزي</span>لغة تقرير المراجعة الداخلية، كتابة التوصيات، تقديم نتائج المراجعة للإدارة (تمرين لعب الأدوار)</td>
+              <td>أنتج تقرير مراجعة داخلية كامل للشركة الافتراضية: النطاق، مجالات الخطر، النتائج (3 نتائج بتوصيات)، ردود الإدارة</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="milestone-box">
+        <h4>🏁 معلم الشهر الخامس — أنت مستعد للتقدم عندما:</h4>
+        <ul>
+          <li>تحلّل القوائم المالية لشركة حقيقية وتكتب مذكرة تحليل احترافية صفحة واحدة</li>
+          <li>بنيت نموذج ميزانية متجددة 12 شهراً مع تحليل انحرافات في الإكسيل</li>
+          <li>تكتب الأنواع الأربعة من آراء المراجعة بصياغة قياسية صحيحة</li>
+          <li>تفهم الرقابة الداخلية وإطار COSO وتحدد نقاط الضعف في الضوابط</li>
+          <li>أنتجت تقرير مراجعة داخلية كاملاً بنتائج وتوصيات</li>
+          <li>تكوّن الحسابات التحليلية والميزانيات والتقارير الإدارية في Odoo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- الشهر السادس -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <h2>الشهر السادس — التكامل والمحفظة المهنية والمقابلات والتوظيف</h2>
+  </div>
+  <div class="month-card">
+    <div class="month-header">
+      <div class="month-num" style="background:#0d1b2a;">6</div>
+      <div class="month-meta">
+        <h3>المشاريع الختامية، السيرة الذاتية، LinkedIn، المقابلات التجريبية وطلبات العمل</h3>
+        <p>الشعار: "توقف عن الدراسة. ابدأ الإثبات. كل يوم هذا الشهر يجب أن يقربك من عرض عمل."</p>
+      </div>
+    </div>
+    <div class="month-body">
+      <div class="focus-pills">
+        <span class="pill pill-blue">مشاريع المحفظة الختامية</span>
+        <span class="pill pill-gold">السيرة الذاتية و LinkedIn</span>
+        <span class="pill pill-green">التحضير للمقابلات</span>
+        <span class="pill pill-navy">طلبات التوظيف</span>
+      </div>
+      <div class="tracks-table-wrap">
+        <table>
+          <thead>
+            <tr><th>الأسبوع</th><th>المحفظة / المشروع الختامي</th><th>السيرة الذاتية و LinkedIn</th><th>التحضير للمقابلات</th><th>إجراءات البحث عن وظيفة</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="week-label">Week 21</span></td>
+              <td>ابنِ المشروع الختامي 1: إعداد Odoo ERP كامل لشركة صغيرة ومتوسطة افتراضية (إعداد الشركة، دليل الحسابات، دورة الذمم المدينة والدائنة، المخزون، الرواتب، التقارير المالية). وثّق كل شيء بلقطات شاشة.</td>
+              <td>ضع مسوّدة سيرتك الذاتية: قسم المهارات المحاسبية، إتقان البرامج (Odoo ★★★★، إكسيل ★★★★★، IFRS ★★★)، التعليم، الشهادات، المشاريع. استخدم قالباً احترافياً أحادي الصفحة.</td>
+              <td>ابحث عن الوظائف المستهدفة (محاسب، محاسب ERP، مساعد مراجع، محلل مالي مبتدئ). ادرس 10 إعلانات وظائف. طابق مهاراتك بمتطلباتها. حدد الثغرات.</td>
+              <td>أعدّ تنبيهات الوظائف على LinkedIn وWuzzuf وIndeed. تابع 10 متخصصين في التوظيف المحاسبي. تواصل مع 5 محاسبين محترفين على LinkedIn مع رسالة تعريفية.</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 22</span></td>
+              <td>ابنِ المشروع الختامي 2: نموذج مالي للسنة الكاملة في الإكسيل (قائمة دخل، ميزانية عمومية، تدفقات نقدية، لوحة نسب، مخططات، تحليل سيناريوهات). استخدم أرقاماً واقعية. اجعله جميلاً واحترافياً.</td>
+              <td>طوّر ملف LinkedIn: العنوان الوظيفي ("محاسب مبتدئ | Odoo ERP | IFRS | إكسيل متقدم")، الملخص (50 كلمة، محور الإنجازات)، المهارات، المشاريع، الشهادات. ارفع محفظتك.</td>
+              <td>تدرّب على أسئلة المقابلات التقنية: قواعد المدين والدائن، المعادلة المحاسبية، القيود التسوية، نموذج IFRS 15 الخطوات الخمس، قيود IFRS 16، ما هي الأهمية النسبية، أنواع آراء المراجعة، VLOOKUP مقابل INDEX/MATCH.</td>
+              <td>قدّم على 5 وظائف يومياً. خصّص رسالة تغطية لكل وظيفة. تابع الطلبات في جدول إكسيل (الشركة، الوظيفة، التاريخ، الحالة، جهة الاتصال، تاريخ المتابعة).</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 23</span></td>
+              <td>ابنِ المشروع الختامي 3: ملف مراجعة مصغّر — التخطيط، تقييم المخاطر، حساب الأهمية النسبية، الإجراءات الجوهرية، الاستثناءات، رأي المراجعة. استخدم الشركة الافتراضية من الأشهر السابقة.</td>
+              <td>اكتب 3 نسخ من سيرتك الذاتية: واحدة للمحاسب، وواحدة لمحاسب ERP، وواحدة لمساعد المراجع. كيّف الكلمات المفتاحية لكل منها. احصل على ملاحظات من مرشد أو مستشار مهني.</td>
+              <td>مقابلات تجريبية (سجّل نفسك بالفيديو): سلوكية (طريقة STAR)، تقنية محاسبية، محاكاة اختبار إكسيل مباشر، دراسة حالة (حلّل هذه القوائم المالية في 10 دقائق). راجع التسجيلات بعين ناقدة.</td>
+              <td>تواصل مع 3 شركات أو مكاتب محاسبة مباشرةً (بريد بارد أو رسالة LinkedIn). اطلب مكالمة تعريفية لمدة 15 دقيقة. احضر أي فعالية تواصل مهني في مجال المحاسبة.</td>
+            </tr>
+            <tr>
+              <td><span class="week-label">Week 24</span></td>
+              <td>مراجعة تكاملية نهائية: سدّ أي ثغرات معرفية متبقية، اصقل المشاريع الثلاثة، أنشئ ملخص محفظة PDF (صفحة واحدة لمحة عن مشاريعك الثلاثة)، ارفعها على Google Drive أو GitHub.</td>
+              <td>مراجعة نهائية للسيرة الذاتية وتدقيق إملائي. اطلب من شخص آخر مراجعتها. تحقق: لا أخطاء إملائية، تنسيق متسق، أفعال قوية (أعددت، حللت، طابقت، كوّنت، نفّذت، قدّمت).</td>
+              <td>مارس 5 مقابلات تجريبية كاملة (اثنتان على الأقل مع شخص آخر). اعمل على الهدوء والإجابات المنظمة وطرح الأسئلة الذكية. ابحث عن كل شركة قبل المقابلة.</td>
+              <td>استمر في طلبات العمل اليومية. تابع طلبات الأسبوع الثاني والعشرين. قدّم على وظائف طموحة. تفاوض بثقة عند تلقّي العروض. أنت مستعد.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="milestone-box">
+        <h4>🏁 معلم الشهر السادس — أنت مؤهل للتوظيف عندما:</h4>
+        <ul>
+          <li>لديك 3 مشاريع محفظة مصقولة تُثبت مهاراتك في المحاسبة ونمذجة الإكسيل وOdoo</li>
+          <li>سيرتك الذاتية مُخصّصة لـ 3 وظائف مختلفة ومُراجَعة من محترف</li>
+          <li>ملفك على LinkedIn مُحسَّن ولديك 50+ تواصل في المجال</li>
+          <li>أجريت 10 مقابلات تجريبية على الأقل (5 تقنية و5 سلوكية)</li>
+          <li>تقدمت على 50+ وظيفة وتتابع بانتظام</li>
+          <li>تجيب على أي سؤال محاسبي أو IFRS أو مراجعة أو إكسيل بثقة وهدوء</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- التحضير للمقابلات -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <h2>دليل التحضير للمقابلات</h2>
+  </div>
+
+  <h3 class="sub-heading">أهم الأسئلة التقنية حسب كل وظيفة</h3>
+  <div class="tracks-table-wrap">
+    <table>
+      <thead>
+        <tr><th>الوظيفة</th><th>أسئلة تقنية رئيسية</th><th>ما يريد المقابِل سماعه</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>محاسب</strong></td>
+          <td>ما هي المعادلة المحاسبية؟ سِرني في قيد مصاريف مدفوعة مقدماً. كيف تُقفل دفاتر الشهر؟ ما الذي يجعل ميزان المراجعة لا يتوازن؟ اشرح الأساس النقدي مقابل أساس الاستحقاق.</td>
+          <td>الدقة والسرعة، فهم القيد المزدوج، معرفة إجراءات الإقفال الشهري، الانتباه للتفاصيل</td>
+        </tr>
+        <tr>
+          <td><strong>محاسب ERP</strong></td>
+          <td>ما أنظمة ERP التي استخدمتها؟ كيف تسجّل فاتورة مورد في Odoo؟ ما الفرق بين قيد اليومية والحركة المحاسبية في Odoo؟ كيف تتعامل مع تعدد العملات؟ اشرح المطابقة الثلاثية في Odoo.</td>
+          <td>خبرة عملية بالـ ERP، القدرة على الإعداد والإصلاح، عقلية دقة البيانات</td>
+        </tr>
+        <tr>
+          <td><strong>مساعد مراجع</strong></td>
+          <td>ما هي مخاطر المراجعة؟ كيف تحدد الأهمية النسبية؟ ما الفرق بين الإجراءات الجوهرية واختبارات الضوابط؟ ماذا يعني "أدلة مراجعة كافية وملائمة"؟ ما أنواع آراء المراجعة؟</td>
+          <td>فهم إطار ISA، الشك المهني، التفكير التحليلي، مهارات التواصل</td>
+        </tr>
+        <tr>
+          <td><strong>محلل مالي مبتدئ</strong></td>
+          <td>سِرني في نموذج DCF. ماذا يقيس التدفق النقدي الحر؟ ما EBITDA ولماذا تهمنا؟ اشرح الفرق بين ROE وROA. ما النسب المالية التي تستخدمها لتقييم السيولة؟</td>
+          <td>إتقان الإكسيل، التفكير التحليلي، القدرة على سرد قصة بالأرقام، الوعي التجاري</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-heading">طريقة STAR للأسئلة السلوكية</h3>
+  <div class="tracks-table-wrap">
+    <table>
+      <thead>
+        <tr><th>السؤال الشائع</th><th>S — الموقف</th><th>T — المهمة</th><th>A — الإجراء</th><th>R — النتيجة</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"أخبرني عن مرة اكتشفت فيها خطأ"</td>
+          <td>صِف سيناريو حقيقي من أعمالك أو مشاريعك</td>
+          <td>مسؤوليتك في ذلك الموقف</td>
+          <td>كيف اكتشفت الخطأ وحققت فيه</td>
+          <td>كيف صححته وما الذي تعلمته</td>
+        </tr>
+        <tr>
+          <td>"كيف تدير مواعيد نهائية متعددة؟"</td>
+          <td>سيناريو إقفال الشهر + التحضير للمراجعة</td>
+          <td>المسؤولية عن كليهما في آنٍ واحد</td>
+          <td>طريقة الأولويات، التواصل، جدول تتبع الإكسيل</td>
+          <td>كلاهما اكتملا في الوقت دون أخطاء</td>
+        </tr>
+        <tr>
+          <td>"اشرح مفهوماً مالياً معقداً لغير متخصص"</td>
+          <td>IFRS 16 / محاسبة عقود الإيجار</td>
+          <td>شرح لصاحب عمل لماذا أصبح الإيجار أصلاً</td>
+          <td>استخدمت تشبيهاً بسيطاً ورسماً توضيحياً</td>
+          <td>فهم صاحب العمل ووافق على المعالجة المحاسبية</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- الموارد الموصى بها -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <h2>الموارد الموصى بها</h2>
+  </div>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <h4>📚 المحاسبة — الكتب</h4>
+      <ul>
+        <li>Financial Accounting — Weygandt, Kimmel & Kieso</li>
+        <li>Accounting Made Simple — Mike Piper</li>
+        <li>The Accounting Game — Mullis & Orloff</li>
+        <li>Intermediate Accounting — Kieso & Warfield</li>
+        <li>Frank Wood's Business Accounting Vol 1 & 2</li>
+        <li>المحاسبة المالية — د. وليد ناجي الحيالي (عربي)</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <h4>🎥 المحاسبة — يوتيوب</h4>
+      <ul>
+        <li>Accounting Stuff (James) — أفضل شرح للأساسيات</li>
+        <li>Edspira — جميع مواضيع المحاسبة بعمق أكاديمي</li>
+        <li>The Financial Controller — تركيز عملي</li>
+        <li>قناة المحاسب العربي — محتوى عربي ممتاز</li>
+        <li>CPA Exam Guy — قيود وتسويات</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <h4>💻 الإكسيل — كورسات ومراجع</h4>
+      <ul>
+        <li>ExcelJet.net — مرجع الصيغ (احفظه في المفضلة)</li>
+        <li>Chandoo.org — لوحات البيانات والمخططات</li>
+        <li>Udemy: Excel Beginner to Advanced — Kyle Pew</li>
+        <li>CFI — كورس إكسيل مجاني (corporatefinanceinstitute.com)</li>
+        <li>Leila Gharani — إكسيل للمالية (يوتيوب)</li>
+        <li>Wall Street Prep — مراجع إكسيل المالية</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <h4>🟣 Odoo ERP — الموارد</h4>
+      <ul>
+        <li>التوثيق الرسمي لـ Odoo (docs.odoo.com)</li>
+        <li>Odoo eLearning (odoo.com/slides)</li>
+        <li>يوتيوب: Odoo Mates — شروح حسب كل وحدة</li>
+        <li>يوتيوب: Cybrosys Technologies — أدلة Odoo</li>
+        <li>منتدى مجتمع Odoo (odoo.com/forum)</li>
+        <li>نسخة تجريبية مجانية: demo.odoo.com</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <h4>📋 IFRS — المراجع الرسمية والدراسية</h4>
+      <ul>
+        <li>موقع مؤسسة IFRS (ifrs.org) — ملخصات مجانية</li>
+        <li>Deloitte IAS Plus (iasplus.com) — أفضل مرجع</li>
+        <li>مواد دراسة ACCA — التقارير المالية (FR)</li>
+        <li>يوتيوب: محاضرات ACCA (opentuition.com)</li>
+        <li>Silvia من IFRS Box (ifrscommunity.com)</li>
+        <li>كتب دراسة BPP/Kaplan لدبلوم IFRS</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <h4>🔍 المراجعة — الموارد</h4>
+      <ul>
+        <li>معايير ISA من IAASB (مجاني على iaasb.org)</li>
+        <li>ACCA Audit & Assurance (AA) — BPP Study Text</li>
+        <li>OpenTuition.com — محاضرات ACCA AA مجانية</li>
+        <li>يوتيوب: محاضرات ACCA AA/P7</li>
+        <li>أدلة PwC / Deloitte / EY — مجانية على مواقعهم</li>
+        <li>معهد المدققين الداخليين IIA — موارد مجانية</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <h4>🗣️ الإنجليزي للأعمال</h4>
+      <ul>
+        <li>Financial Times (ft.com) — اقرأ يومياً</li>
+        <li>The Economist — لغة الاقتصاد والأعمال</li>
+        <li>BBC Learning English — بودكاست إنجليزي الأعمال</li>
+        <li>Investopedia — تعريفات المصطلحات المالية</li>
+        <li>Coursera: Business English Communication (UBC)</li>
+        <li>Grammarly — تدقيق جميع كتاباتك الإنجليزية</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <h4>🏅 الشهادات المستهدفة</h4>
+      <ul>
+        <li>Odoo Functional Certification (odoo.com/certification)</li>
+        <li>ACCA Foundation (FAB, FFA, FMA) — مسار طويل الأمد</li>
+        <li>CFI FMVA® — شهادة النمذجة المالية</li>
+        <li>Microsoft Office Specialist — Excel Expert</li>
+        <li>دبلوم IFRS (ACCA / ICAEW)</li>
+        <li>CIA — مدقق داخلي معتمد (بعد سنة خبرة عمل)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- الإنتاجية ومكافحة الإرهاق -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <h2>نظام الإنتاجية وإستراتيجية مكافحة الإرهاق</h2>
+  </div>
+  <div class="tip-grid">
+    <div class="tip-card">
+      <h4>🧠 التكرار المتباعد (غير قابل للتفاوض)</h4>
+      <p>استخدم تطبيق Anki للبطاقات التعليمية. أنشئ بطاقات للمفاهيم المحاسبية، أرقام معايير IFRS، صيغ الإكسيل، مسارات قوائم Odoo، تعريفات المراجعة. راجع 20 بطاقة كل صباح قبل الدراسة. هكذا تحتفظ بـ 80% مما تتعلمه.</p>
+    </div>
+    <div class="tip-card">
+      <h4>📓 أسلوب فاينمان</h4>
+      <p>بعد كل موضوع، اكتب 5 جمل تشرح فيها الموضوع كما لو كنت تشرح لطفل في المرحلة الابتدائية. إذا لم تستطع، فأنت لم تفهمه بعد. أبقِ "دفتر فاينمان" — صفحة واحدة لكل موضوع.</p>
+    </div>
+    <div class="tip-card">
+      <h4>⏱️ تقنية بومودورو للتركيز العميق</h4>
+      <p>ادرس في وحدات مدتها 50 دقيقة مع استراحات 10 دقائق. لا تتنقل بين المسارات داخل الوحدة الواحدة. المواضيع المعقدة (توحيد IFRS، مخاطر المراجعة) تحتاج 2 بومودورو على الأقل دون انقطاع.</p>
+    </div>
+    <div class="tip-card">
+      <h4>📅 طقوس المراجعة الأسبوعية (يوم السبت)</h4>
+      <p>كل أسبوع: (1) ماذا أتقنت؟ (2) ما الذي لا أزال متذبذباً فيه؟ (3) ما الذي يحتاج تكراراً الأسبوع القادم؟ (4) خطّط للأسبوع المقبل. تابع التقدم في جدول إكسيل بسيط. لا تتخطّ هذه المراجعة أبداً.</p>
+    </div>
+    <div class="tip-card">
+      <h4>🔄 تناوب المسارات</h4>
+      <p>لا تدرس المسار نفسه أكثر من ساعتين متواصلتين. تناوب: 90 دقيقة محاسبة ← استراحة ← 60 دقيقة إكسيل ← استراحة ← 45 دقيقة إنجليزي. عقلك يحتفظ بالمعلومات أكثر عند التنقل بين المواضيع المترابطة مقارنةً بالتركيز على موضوع واحد 6 ساعات.</p>
+    </div>
+    <div class="tip-card">
+      <h4>📁 ابنِ محفظتك أثناء التعلم</h4>
+      <p>احفظ كل تمرين ونموذج ومشروع تبنيه. أنشئ مجلد Google Drive: "محفظة أعمالي المحاسبية". كل شهر يضيف ملفاً رئيسياً واحداً. في نهاية الشهر السادس، ستكون لديك 20+ عينة عمل. أصحاب العمل يحبون المرشحين الذين يُثبتون بدلاً من مجرد الادعاء.</p>
+    </div>
+    <div class="tip-card">
+      <h4>🌙 احمِ نومك</h4>
+      <p>8 ساعات ليست رفاهية — بل هي الوقت الذي يُوطّد فيه عقلك المعلومات المحاسبية في الذاكرة طويلة الأمد. الدراسة مع الحرمان من النوم أقل فاعلية بنسبة 40%. لا دراسة بعد الساعة 10 مساءً. لا شاشات 30 دقيقة قبل النوم.</p>
+    </div>
+    <div class="tip-card">
+      <h4>👥 شريك المسؤولية الدراسية</h4>
+      <p>شخص واحد يدرس نفس الخطة يغيّر كل شيء. شاركا التقدم الأسبوعي. اختبرا بعضكما في الأسئلة التقنية. راجعا نماذج الإكسيل لدى الآخر. الضغط الاجتماعي للتقرير عن تقدمك يضاعف معدل الالتزام.</p>
+    </div>
+    <div class="tip-card">
+      <h4>📰 اقرأ مقالة مالية يومياً</h4>
+      <p>5 دقائق كل صباح: اقرأ مقالة من FT أو Reuters أو Bloomberg بالإنجليزية. لاحظ 3 كلمات مفردات جديدة. يبني ذلك الطلاقة الإنجليزية والوعي التجاري ويمنحك موضوعات للحديث عنها في المقابلات. استخدمها كإحماء ذهني.</p>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">جدول المراجعة المتباعدة</h3>
+  <div class="tracks-table-wrap">
+    <table>
+      <thead>
+        <tr><th>عند تعلّم موضوع جديد</th><th>راجعه في</th><th>راجعه في</th><th>راجعه في</th><th>راجعه في</th><th>النتيجة</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>اليوم 0 (الدراسة الأولى)</td>
+          <td>اليوم 1</td>
+          <td>اليوم 3</td>
+          <td>اليوم 7</td>
+          <td>اليوم 21</td>
+          <td>ذاكرة طويلة الأمد ✓</td>
+        </tr>
+        <tr>
+          <td>مثال: قيود IFRS 16</td>
+          <td>حل 3 مسائل تطبيقية في اليوم التالي</td>
+          <td>اشرحه دون النظر إلى ملاحظاتك</td>
+          <td>حل تمرين جديد من الصفر</td>
+          <td>علّمه لشخص آخر</td>
+          <td>محفور في الذاكرة نهائياً ✓</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- قائمة التحقق النهائية -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>قائمة التحقق النهائية للجاهزية الوظيفية</h2>
+  </div>
+  <p style="color: var(--slate); font-size: 13px; margin-bottom: 20px;">ضع علامة على كل بند قبل أن تُعلن أنك مستعد للتوظيف. إذا لم تستطع، عد وصحّح ذلك. هذا هو معيارك.</p>
+
+  <div class="checklist-grid">
+    <div class="checklist-cat">
+      <h4>✅ المحاسبة الأساسية</h4>
+      <div class="check-item"><div class="check-box"></div>أسجّل أي معاملة في قيد يومية بشكل صحيح من أول مرة</div>
+      <div class="check-item"><div class="check-box"></div>أعدّ دورة محاسبية كاملة من الصفر (قيود ← ميزان ← قوائم)</div>
+      <div class="check-item"><div class="check-box"></div>أفهم المستحقات والمقدمات والاستهلاك والمخصصات</div>
+      <div class="check-item"><div class="check-box"></div>أُجري مطابقة بنكية بدقة</div>
+      <div class="check-item"><div class="check-box"></div>أحفظ قائمة إقفال الشهر عن ظهر قلب</div>
+      <div class="check-item"><div class="check-box"></div>أحسب تكلفة البضاعة المباعة بـ FIFO والمتوسط المرجح</div>
+      <div class="check-item"><div class="check-box"></div>أفهم الضريبة المؤجلة (DTA مقابل DTL)</div>
+    </div>
+    <div class="checklist-cat">
+      <h4>✅ معايير IFRS</h4>
+      <div class="check-item"><div class="check-box"></div>أطبّق IAS 16 (أصول ثابتة) — استهلاك، تخلص، انخفاض</div>
+      <div class="check-item"><div class="check-box"></div>أطبّق IFRS 15 — نموذج الاعتراف بالإيراد الخطوات الخمس</div>
+      <div class="check-item"><div class="check-box"></div>أطبّق IFRS 16 — أبني جدول إطفاء عقد إيجار</div>
+      <div class="check-item"><div class="check-box"></div>أطبّق IAS 2، IAS 7، IAS 12، IAS 36، IAS 37، IAS 38</div>
+      <div class="check-item"><div class="check-box"></div>أطبّق IFRS 9 — نموذج ECL، تصنيف الأدوات المالية</div>
+      <div class="check-item"><div class="check-box"></div>أعدّ توحيد أساسي (IFRS 10 + IFRS 3) بالشهرة وحقوق الأقلية</div>
+      <div class="check-item"><div class="check-box"></div>أقرأ وأفسّر ملاحظات إفصاح IFRS في التقارير السنوية</div>
+    </div>
+    <div class="checklist-cat">
+      <h4>✅ الإكسيل المتقدم</h4>
+      <div class="check-item"><div class="check-box"></div>أتقن VLOOKUP وINDEX/MATCH وXLOOKUP</div>
+      <div class="check-item"><div class="check-box"></div>أبني جداول محورية بمقسّمات وحقول محسوبة</div>
+      <div class="check-item"><div class="check-box"></div>أنشئ لوحات بيانات ديناميكية بمخططات وبطاقات KPI</div>
+      <div class="check-item"><div class="check-box"></div>أستخدم الدوال المالية: NPV وIRR وPMT وFV وXNPV</div>
+      <div class="check-item"><div class="check-box"></div>أبني نموذجاً مالياً متكاملاً من 3 قوائم</div>
+      <div class="check-item"><div class="check-box"></div>أستخدم Power Query لتنظيف البيانات وتحويلها</div>
+      <div class="check-item"><div class="check-box"></div>أبني تحليل سيناريوهات (جداول البيانات، Scenario Manager)</div>
+    </div>
+    <div class="checklist-cat">
+      <h4>✅ نظام Odoo ERP</h4>
+      <div class="check-item"><div class="check-box"></div>أُكوّن الشركة ودليل الحسابات والضرائب والعملات</div>
+      <div class="check-item"><div class="check-box"></div>أُعالج دورة الذمم المدينة الكاملة (عرض ← فاتورة ← سداد)</div>
+      <div class="check-item"><div class="check-box"></div>أُعالج دورة الذمم الدائنة الكاملة (أمر ← فاتورة ← دفع ← مطابقة)</div>
+      <div class="check-item"><div class="check-box"></div>أُدير المخزون وتقييم المخزون بطريقة FIFO</div>
+      <div class="check-item"><div class="check-box"></div>أُكوّن كشوف الرواتب وأُرحّل القيود</div>
+      <div class="check-item"><div class="check-box"></div>أُنتج: الدخل، الميزانية، التدفقات، ميزان المراجعة في Odoo</div>
+      <div class="check-item"><div class="check-box"></div>أُكوّن الحسابات التحليلية والميزانيات ومراكز التكلفة</div>
+    </div>
+    <div class="checklist-cat">
+      <h4>✅ المراجعة والتدقيق</h4>
+      <div class="check-item"><div class="check-box"></div>أشرح نموذج مخاطر المراجعة (كامنة، رقابة، اكتشاف)</div>
+      <div class="check-item"><div class="check-box"></div>أحسب الأهمية النسبية للتخطيط والأداء</div>
+      <div class="check-item"><div class="check-box"></div>أصمّم إجراءات جوهرية للإيراد والنقد والذمم والرواتب</div>
+      <div class="check-item"><div class="check-box"></div>أفهم أخذ العينات (إحصائية وغير إحصائية)</div>
+      <div class="check-item"><div class="check-box"></div>أكتب الأنواع الأربعة من آراء المراجعة بالصياغة الصحيحة</div>
+      <div class="check-item"><div class="check-box"></div>أكمل ملف مراجعة وهمي (من التخطيط حتى الإنهاء)</div>
+      <div class="check-item"><div class="check-box"></div>أفهم إطار COSO للرقابة الداخلية</div>
+    </div>
+    <div class="checklist-cat">
+      <h4>✅ طلب العمل والمهارات الناعمة</h4>
+      <div class="check-item"><div class="check-box"></div>سيرة ذاتية احترافية (صفحة واحدة، مُخصّصة لـ 3 وظائف)</div>
+      <div class="check-item"><div class="check-box"></div>ملف LinkedIn مُحسَّن بالكامل مع محفظة الأعمال</div>
+      <div class="check-item"><div class="check-box"></div>3 مشاريع محفظة مصقولة على Google Drive</div>
+      <div class="check-item"><div class="check-box"></div>مارست 10+ مقابلات تجريبية (مسجّلة ومُراجَعة)</div>
+      <div class="check-item"><div class="check-box"></div>أجيب على أي سؤال تقني بهدوء وثقة</div>
+      <div class="check-item"><div class="check-box"></div>تقدمت على 50+ وظيفة برسائل تغطية مخصصة</div>
+      <div class="check-item"><div class="check-box"></div>إنجليزي الأعمال: رسائل ومذكرات وتقارير احترافية</div>
+    </div>
+  </div>
+
+  <div style="background: var(--navy); border-radius: 8px; padding: 36px; margin-top: 36px; text-align: center;">
+    <div style="font-family: 'Cairo', sans-serif; font-size: 26px; font-weight: 900; color: var(--gold); margin-bottom: 14px;">لقد استحققت مكانك على طاولة المهنيين.</div>
+    <p style="color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; font-size: 14px; line-height: 1.9;">ستة أشهر من الدراسة المنضبطة والمتكاملة — محاسبة ومعايير IFRS وإكسيل وOdoo ومراجعة وإنجليزي — منحتك مجموعة مهارات تفتقر إليها معظم الأنماط المتقدمة. أنت لست مجرد مستعد للتوظيف. أنت استثنائي. اذهب واحصل على الوظيفة.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 28px; flex-wrap: wrap;">
+      <div style="border: 1px solid var(--gold); color: var(--gold-light); padding: 7px 18px; border-radius: 4px; font-size: 12px; font-weight: 600;">محاسب ✓</div>
+      <div style="border: 1px solid var(--gold); color: var(--gold-light); padding: 7px 18px; border-radius: 4px; font-size: 12px; font-weight: 600;">محاسب ERP ✓</div>
+      <div style="border: 1px solid var(--gold); color: var(--gold-light); padding: 7px 18px; border-radius: 4px; font-size: 12px; font-weight: 600;">مساعد مراجع ✓</div>
+      <div style="border: 1px solid var(--gold); color: var(--gold-light); padding: 7px 18px; border-radius: 4px; font-size: 12px; font-weight: 600;">محلل مالي مبتدئ ✓</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <strong style="color: var(--gold-light);">خارطة طريق 6 أشهر — المحاسبة والمالية</strong><br>
+  مُصمَّمة للمحاسبين الطموحين — <span>محاسب · محاسب ERP · مساعد مراجع · محلل مالي مبتدئ</span><br>
+  <span style="font-size: 11px; margin-top: 8px; display: block;">أُعدَّت بمساعدة Claude · Anthropic · 2025</span>
+</div>
+
+</body>
+</html>
